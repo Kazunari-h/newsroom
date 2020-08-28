@@ -1,0 +1,127 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+
+    .site-description {
+        font-size: 1.8rem;
+    }
+
+    .custom-logo {
+        max-width: 300px;
+    }
+}
+
+.main-navigation {
+    background-color: #020202;
+    color: white;
+
+    ul.menu {
+        height: 35px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 0.8rem;
+
+        li {
+            width: 1.6 * 8 rem;
+            padding: 0 0.8rem;
+            text-align: center;
+
+            a {
+                color: white;
+                font-weight: bold;
+            }
+        }
+    }
+
+}
+
+.site-main {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.entry-content {
+    h1 {
+        font-size: 3.2rem;
+    }
+
+    h2 {
+        font-size: 2.9rem;
+    }
+
+    h3 {
+        font-size: 2.6rem;
+    }
+
+    h4 {
+        font-size: 2.3rem;
+    }
+
+    h5 {
+        font-size: 2.0rem;
+    }
+
+    h6 {
+        font-size: 1.8rem;
+    }
+}
+
+.site-footer {
+    background-color: #020202;
+    color: #ffffff;
+    padding: 1.6rem;
+
+    a {
+        color: #ffffff;
+        display: block;
+        text-align: center;
+    }
+
+    .footer-menu {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+
+        .widget {
+            width: calc(100% / 3);
+            padding: 1rem;
+
+            &-title {
+                font-size: 2rem;
+                margin: 1rem 0;
+            }
+
+            &_tag_cloud {
+                // タグのウィジェットを直接指定する
+                width: 100%;
+
+                .tagcloud {
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 1rem;
+
+                    a {
+                        padding: 0.5rem 1rem;
+                        font-size: 1.6rem !important;
+                    }
+                }
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+        }
+
+    }
+}
