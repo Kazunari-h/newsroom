@@ -15,7 +15,7 @@
 		<div class="site-info">
 
 			<div class="footer-menu">
-				<?php dynamic_sidebar( 'sidebar-1' ); ?>
+				<?php dynamic_sidebar( 'footer-1' ); ?>
 			</div>
 
 			<a href="https://jura.works">
