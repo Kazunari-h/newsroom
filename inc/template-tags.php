@@ -42,25 +42,31 @@ if ( ! function_exists( 'newsroom_posted_by' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'newsroom_entry_footer' ) ) :
-	/**
-	 * Prints HTML with meta information for the categories, tags and comments.
-	 */
-	function newsroom_entry_footer() {
+if ( ! function_exists( 'newsroom_entry_cat_links' ) ) :
+
+	function newsroom_entry_cat_links() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'newsroom' ) );
 			if ( $categories_list ) {
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( '%1$s', 'newsroom' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf( '<span class="cat-links"><i class="fas fa-pen"></i>' . esc_html__( '%1$s', 'newsroom' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
+		}
+	}
+endif;
 
+if ( ! function_exists( 'newsroom_entry_tags_links' ) ) :
+
+	function newsroom_entry_tags_links() {
+		// Hide category and tag text for pages.
+		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
 			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'newsroom' ) );
 			if ( $tags_list ) {
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( '%1$s', 'newsroom' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				printf( '<span class="tags-links"><i class="fas fa-hashtag"></i>' . esc_html__( '%1$s', 'newsroom' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 	}
