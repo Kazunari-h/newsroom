@@ -12,7 +12,6 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
-
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
 			else :
@@ -22,7 +21,7 @@
 		if ( 'post' === get_post_type() ) :
 			?>
 			<div class="entry-meta">
-				<p>
+				<p class="posted_on">
 					<?php newsroom_posted_on();?>
 				</p>
 				<p>
@@ -33,7 +32,6 @@
 					newsroom_entry_tags_links();
 					?>
 				</p>
-				p
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
