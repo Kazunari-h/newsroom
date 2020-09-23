@@ -159,20 +159,44 @@ body {
 }
 
 .tag {
-    padding: .5rem 1rem;
-    font-size: 1.2rem;
-    border-radius: 4px;
-
-    background-color: red;
-    color: white;
-
     svg {
-        margin-right: .5rem;
+        display: none;
     }
 
-    a {
+    @media screen and (max-width: $mobile-size) {
+        padding: .5rem 1rem;
+        font-size: 1.2rem;
+        border-radius: 4px;
         color: white;
-        text-decoration: none;
+
+        svg {
+            display: inline;
+        }
+
+        &.post-tag {
+            background-color: #14aeae;
+        }
+
+        &.post-cat {
+            background-color: #10c05e;
+        }
+
+        &.posted-on {
+            background-color: #9f9f9f;
+        }
+
+        &.byline {
+            background-color: #9f9f9f;
+        }
+
+        svg {
+            margin-right: .5rem;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
     }
 }
 
@@ -182,14 +206,26 @@ body {
     }
 }
 
-.tags-links {
+.posted_on, .posted_by, .entry_tags {
     @media screen and (max-width: $mobile-size) {
+        margin: 1rem 0;
+    }
+}
+
+.tags-links,
+.cat-links {
+    @media screen and (max-width: $mobile-size) {
+        display: flex;
+        flex-wrap: wrap;
+
         >svg {
             display: none;
         }
 
-        .post-tag {
+        .post-tag,
+        .post-cat {
             margin-right: .5rem;
+            margin-bottom: 1rem;
 
             &:last-child {
                 margin-right: 0;

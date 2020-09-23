@@ -26,7 +26,7 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'newsroom' ); ?></a>
 
-	<header id="masthead" class="site-header">
+	<header id="masthead" class="site-header desktop-menu">
 		<div class="site-branding">
 			<?php
 			the_custom_logo();
@@ -59,3 +59,25 @@
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
+	<header class="smartphone-menu">
+		<div class="site-logo">
+			<?php the_custom_logo(); ?>
+		</div>
+		<label for="menu-flag" class="menu-button">
+			<i class="fas fa-bars"></i>
+		</label>
+	</header>
+	<input type="checkbox" id="menu-flag">
+	<div class="smartphone-menu-wrap">
+		<nav class="navigation">
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'menu-1',
+					'menu_id'        => 'primary-menu',
+				)
+			);
+			?>
+		</nav>
+		<label for="menu-flag"></label>
+	</div>

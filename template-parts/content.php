@@ -24,10 +24,11 @@
 				<p class="posted_on">
 					<?php newsroom_posted_on();?>
 				</p>
-				<p>
+				<p class="posted_by">
+					<?php newsroom_posted_by(); ?>
+				</p>
+				<p class="entry_tags">
 					<?php
-					newsroom_posted_by();
-
 					newsroom_entry_cat_links();
 					newsroom_entry_tags_links();
 					?>

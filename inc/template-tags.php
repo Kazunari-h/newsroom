@@ -25,8 +25,8 @@ if ( ! function_exists( 'newsroom_posted_on' ) ) :
 			esc_html( get_the_modified_date() )
 		);
 
-		$posted_on = '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
-		echo '<span class="tag posted-on"> <i class="fas fa-clock"></i>' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$posted_on = '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark"><i class="fas fa-clock"></i>' . $time_string . '</a>';
+		echo '<span class="tag posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	}
 endif;
@@ -36,8 +36,8 @@ if ( ! function_exists( 'newsroom_posted_by' ) ) :
 	 * Prints HTML with meta information for the current author.
 	 */
 	function newsroom_posted_by() {
-		$byline = '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>';
-		echo '<span class="tag byline"> <i class="fas fa-user"></i>' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$byline = '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '"> <i class="fas fa-user"></i>' . esc_html( get_the_author() ) . '</a></span>';
+		echo '<span class="tag byline">' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 	}
 endif;
@@ -48,10 +48,15 @@ if ( ! function_exists( 'newsroom_entry_cat_links' ) ) :
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( '<span class="comma">, </span>' );
-			if ( $categories_list ) {
-				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links"><i class="fas fa-pen"></i>' . esc_html__( '%1$s', 'newsroom' ) . '</span>', $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			$categories = get_the_category();
+			$icon_tag = '<i class="fas fa-pen"></i>';
+			$separator = '<span class="comma">, </span>';
+			$output = '';
+			if ( $categories ) {
+				foreach( $categories as $category ) {
+					$output .= '<span class="tag post-cat"><a href="' . get_category_link( $category->term_id ) . '" >' .$icon_tag. $category->cat_name . '</a></span>' . $separator;
+				}
+				echo '<span class="cat-links">' .$icon_tag. $output . '</span>';
 			}
 		}
 	}
@@ -62,16 +67,20 @@ if ( ! function_exists( 'newsroom_entry_tags_links' ) ) :
 	function newsroom_entry_tags_links() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
-			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( 
-				'<span class="tag post-tag"><i class="fas fa-hashtag"></i>', 
-				'</span><span class="comma">, </span><span class="tag post-tag"><i class="fas fa-hashtag"></i>',
-				'</span>'
-			);
-			if ( $tags_list ) {
-				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links"><i class="fas fa-hashtag"></i>' . esc_html__( '%1$s', 'newsroom' ) . '</span>', $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			$tags = get_the_tags();
+			$html = '<span class="tags-links">';
+			$icon_tag = '<i class="fas fa-hashtag"></i>';
+			$html .= $icon_tag;
+			foreach ( $tags as $tag ) {
+				$html .= '<span class="tag post-tag">';
+				$tag_link = get_tag_link( $tag->term_id );
+				$html .= "<a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}'>".$icon_tag;
+				$html .= "{$tag->name}</a>";
+				$html .= '</span>';
+				$html .= '<span class="comma">, </span>';
 			}
+			$html .= '</span>';
+			echo $html;
 		}
 	}
 endif;
